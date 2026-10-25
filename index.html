@@ -78,18 +78,16 @@
      }
      .happyguy{
       position: absolute;
-      width: 65px;
-      left: 44%;
-      top: 48%;
-      opacity: 0;
-      mix-blend-mode: multiply;
+      width: 150px;
+      left: 63%;
+      top: 27%;
+      z-index: 10;
       filter: contrast(1.5) drop-shadow(0 0 12px rgba(255, 0, 0, 0.6));
-      transition: opacity 0.2s ease, transform 0.3s ease;
       pointer-events: none;
      }
      body.horrorshit .happyguy{
         opacity: 0.85;
-        transform: scale(1.15);
+        transform: scale(3);
      }
      .bulb{
         position: absolute;
@@ -139,21 +137,22 @@
          filter:drop-shadow(0 12px 22px rgba(0,0,0,0.9));
          pointer-events: none;}
      .levercont{
+        z-index: 1;
         position: absolute;
         top:38%;
         right: 63%;
-        transform: translateZ(65px);
+        transform: translateZ(35px);
         cursor: pointer;
         transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-        z-index: 0;
      }
      .levercont:hover{
-        transform: translateZ(70px) translateY(6px);
+        transform: translateZ(30px) translateY(6px);
      }
      .levercont:active{
-        transform: translateZ(70px) translateY(30px);
+        transform: translateZ(25px) translateY(30px);
      }
      .leverimg{
+        z-index: 0;
         width: 36px;
         height: 170px;
         object-fit: contain;
@@ -182,10 +181,10 @@
     </div>
     <img src="assests/house.png" class="housewallthick"/>
     <img src="assests/house.png" class="housewalls"/>
-    <img src="assests/roof.png" class="houseroof"/>
-    <div class="levercont" id="lever">
-      <img src="assests/lever.png" class="leverimg"/>
+    <div class="levercont" id="lever" style="z-index: -5">
+      <img src="assests/lever.png" class="leverimg" style="z-index: -5"/>
     </div>
+    <img src="assests/roof.png" class="houseroof" style="z-index: 10">
     <img src="assests/Untitled.png" class="bush"/>
     </div>
     <script>
@@ -213,11 +212,11 @@
         void roomimg.offsetWidth
         roomimg.classList.add('flickering')
         setTimeout(() => {
-            document.body.classList.toggle('horror-mode', shiton)
+            document.body.classList.toggle('horrorshit', shiton)
             roomimg.src = shiton ? 'assests/bgdark2.png' : 'assests/bg.png'
             bulbimg.src = shiton ? 'assests/blubdark.png' : 'assests/blub.png'
             happyguy.src = shiton ? 'assests/ee.png' : 'assests/happyguy.png'
-        }, 180)
+        })
        })
     </script>
     
