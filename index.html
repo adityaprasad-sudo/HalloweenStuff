@@ -16,6 +16,7 @@
         justify-content: center;
         display: flex;
         background-color: #000000;
+        
      }
      .bg{
         position: fixed;
@@ -28,7 +29,7 @@
         background-repeat: no-repeat;
         filter: brightness(0.75);
         z-index: 0;
-        transition: transform 0.5s ease-in-out;
+        transition: transform 0.5s ease-out, filter 0.3s ease;
         filter: 0.3s ease;
      }
      body.horror-mode .bg{
@@ -36,22 +37,22 @@
      }
      .scene{
         position: relative;
-        width: min(92vw, 860px);
-        height: min(92vh, 600px);
-        transform-origin: preserve-3d;
+        width: min(92vw, 1280px);
+        height: min(92vh, 920px);
+        transform-style: preserve-3d;
         transition:transform 0.1s ease-out;
         will-change: transform;
         z-index: 2;
      }
      .bush{
         position: absolute;
-        bottom: 35px;
+        bottom: 0px;
         left: 50%;
         width: 115%;
         height: 130px;
         object-fit: fill;
         transform: translateX(-50%) translateZ(95px);
-        filter: brightness(0.25) drop-shadow(0 -8px 15px rgba(0,0,0,0.9s));
+        filter: brightness(0.25) drop-shadow(0 -8px 15px rgba(0,0,0,0.9));
         pointer-events: none;
      }
      .insidethingy{
@@ -90,11 +91,11 @@
         opacity: 0.85;
         transform: scale(1.15);
      }
-     .blub{
+     .bulb{
         position: absolute;
-        top: 12%;
-        left: 24%;
-        width: 38px;
+        top: 8%;
+        left: 15%;
+        width: 70px;
         transform: translateX(-50%);
         filter: drop-shadow(0 0 18px rgba(255, 230, 90, 0.9));
         transition: filter 0.3s ease;
@@ -194,7 +195,30 @@
         const bulbimg = document.getElementById('bulbimg')
         const lever = document.getElementById('lever')
         const happyguy = document.querySelector('.happyguy')
-
+       let shiton =false;
+       window.addEventListener('mousemove', (e) =>{
+        const x = e.clientX / window.innerWidth - 0.5
+        const y = e.clientY / window.innerHeight - 0.5
+        scene.style.transform = `rotateX(${y * 15}deg) rotateY(${x * 15}deg)`
+        forestBg.style.transform = `rotateX(${y * 15}deg) rotateY(${x * 15}deg)`
+        roomimg.style.transform = `rotateX(${y * 15}deg) rotateY(${x * 15}deg)`
+       })
+       lever.addEventListener('click', () =>{
+        shiton = !shiton
+        lever.classList.add('puller')
+        setTimeout(() => 
+            lever.classList.remove('puller'), 250
+        )
+        roomimg.classList.remove('flickering')
+        void roomimg.offsetWidth
+        roomimg.classList.add('flickering')
+        setTimeout(() => {
+            document.body.classList.toggle('horror-mode', shiton)
+            roomimg.src = shiton ? 'assests/bgdark2.png' : 'assests/bg.png'
+            bulbimg.src = shiton ? 'assests/blubdark.png' : 'assests/blub.png'
+            happyguy.src = shiton ? 'assests/ee.png' : 'assests/happyguy.png'
+        }, 180)
+       })
     </script>
     
   </body>
