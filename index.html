@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic HTML Layout</title>
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        color: #333;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        background: #222;
+        color: white;
+        padding: 20px 0;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+        padding: 30px 0;
+      }
+
+      .content,
+      .sidebar {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      h1, h2 {
+        margin-top: 0;
+      }
+
+      footer {
+        background: #222;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      @media (max-width: 768px) {
+        main {
+          grid-template-columns: 1fr;
+        }
+
+        nav {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">My Site</div>
+          <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="content">
+        <h1>Welcome</h1>
+        <p>This is a basic HTML layout with a header, main area, sidebar, and footer.</p>
+        <p>You can customize this structure for your own project.</p>
+      </section>
+
+      <aside class="sidebar">
+        <h2>Sidebar</h2>
+        <p>Some extra information or links can go here.</p>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="container">© 2025 My Site</div>
+    </footer>
+  </body>
+</html>
